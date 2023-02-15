@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController; 
 use App\Http\Controllers\ProfileController; 
 use App\Http\Controllers\AuthController; 
+use App\Http\Controllers\FollowerController; 
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/', [MainController::class, 'get']);
@@ -16,6 +17,9 @@ Route::group(['middleware' => 'auth'], function() {
         $profile = new ProfileController(); 
         return $profile->get($identifier); 
     }); 
+
+    Route::post('/profile/handle', [FollowerController::class, 'handle'])->name('follow');
+    Route::post('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 }); 
 
 Route::get('login', [AuthController::class, 'getLogin'])->name('login');

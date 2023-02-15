@@ -19,7 +19,7 @@
                 <div>¡Hey! ¿Another time here?</div>
             @endif
 
-            <form method="POST" action="{{ route('auth.login') }}">
+            <form method="POST" class="form" action="{{ route('auth.login') }}">
                 @csrf 
 
                 <input type="email" placeholder="Email" name="email" value="{{ old('email') }}" readonly onfocus="this.removeAttribute('readonly');">

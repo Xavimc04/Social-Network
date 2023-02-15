@@ -1,5 +1,5 @@
 <div class="blog-create">
-    <form method="POST" action="{{ route('post.new') }}" enctype="multipart/form-data">
+    <form method="POST" class="form" action="{{ route('post.new') }}" enctype="multipart/form-data">
         @csrf 
         
         @if ($categories->count() > 0)

@@ -8,12 +8,12 @@ use App\Models\Post;
 use App\Models\User; 
 use Illuminate\Pagination\CursorPaginator; 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth; 
 
 class MainController extends Controller
 {
     public function get() {
-        $posts = DB::table('posts')->orderBy('created_at', 'desc')->cursorPaginate(15);
+        $posts = DB::table('posts')->orderBy('created_at', 'desc')->cursorPaginate(10, ['*'], 'posts');
         $categories = Category::all(); 
 
         for($index = 0; $index < $posts->count(); $index++) {

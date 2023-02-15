@@ -49,12 +49,12 @@ body {
     color: var(--app-color);
 }
 
-form {
+.form {
     display: flex; 
     flex-direction: column; 
 }
 
-form input {
+.form input {
     text-align: center; 
     padding: 10px 0px; 
     border: none; 
@@ -63,15 +63,15 @@ form input {
     border-radius: 5px;
 }
 
-form input[type="submit"] {
+.form input[type="submit"] {
     background: var(--app-color); 
 }
 
-form input:focus {
+.form input:focus {
     outline: none; 
 }
 
-form input:not(:first-child) {
+.form input:not(:first-child) {
     margin-top: 15px; 
 }
 

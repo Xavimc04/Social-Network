@@ -13,7 +13,7 @@
         <div class="middle">
             <section class="header">
                 <h1>Welcome back, <span class="color">{{ Auth::user()->name }}</span></h1>
-                <h4 style="opacity: .5;">Today you've {{ $posts->count() }} new posts for read...</h4>
+                <h4 style="opacity: .5;">The current page has {{ $posts->count() }} posts for read...</h4>
 
                 @if (Session::has('success'))
                     <div class="success">{{ Session::get('success') }}</div>
@@ -25,7 +25,7 @@
 
                 <div class="bar">
                     <span class="material-icons">search</span>
-                    <input class="filter" type="text" name="filter" placeholder="Posts, profiles, categories..."> 
+                    <input class="filter" type="text" name="filter" placeholder="Profiles, categories..."> 
                 </div>
             </section>
 
@@ -33,6 +33,8 @@
                 @foreach ($posts as $post)
                     <x-post :post="$post" />
                 @endforeach
+
+                <div class="links">{{ $posts->links() }}</div>
             </div>
         </div>
 
@@ -41,6 +43,10 @@
     </body>
 
     <style>
+        .links {
+            margin: 20px 0px; 
+        }
+
         .success {
             margin-bottom: 20px; 
             color: var(--app-color);
