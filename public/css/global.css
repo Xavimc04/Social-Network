@@ -1,0 +1,95 @@
+body, body[data-theme="light"] {
+    --bg-color: white;  
+    --main-color: black; 
+    --input-bg: rgb(207, 207, 207); 
+    --input-color: rgb(59, 59, 59); 
+    --app-color: rgb(243, 201, 85); 
+}
+
+body[data-theme="dark"] {
+    --bg-color: #2e2e2e;  
+    --main-color: whitesmoke;
+    --input-bg: rgb(84, 84, 84);
+    --input-color: white; 
+    --app-color: rgb(243, 201, 85); 
+}
+
+body {
+    padding: 0; 
+    margin: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: var(--bg-color); 
+    color: var(--main-color); 
+    transition: all .5s; 
+    overflow-x: hidden; 
+}
+
+* {
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  
+    font-family: 'Nunito', sans-serif; 
+}
+
+.middle {
+    width: 600px; 
+    left: 50%; 
+    position: fixed; 
+    transform: translate(-50%);  
+    overflow-y: scroll; 
+    overflow-x: hidden;
+    height: 100%; 
+}
+
+.middle::-webkit-scrollbar {
+    display: none;
+}
+
+.color {
+    color: var(--app-color);
+}
+
+form {
+    display: flex; 
+    flex-direction: column; 
+}
+
+form input {
+    text-align: center; 
+    padding: 10px 0px; 
+    border: none; 
+    color: var(--input-color);
+    background: var(--input-bg); 
+    border-radius: 5px;
+}
+
+form input[type="submit"] {
+    background: var(--app-color); 
+}
+
+form input:focus {
+    outline: none; 
+}
+
+form input:not(:first-child) {
+    margin-top: 15px; 
+}
+
+select {
+    width: 100%;
+    margin-top: 20px; 
+    border: none; 
+    outline: none;  
+    text-align: center; 
+    padding: 10px 0px; 
+    border-radius: 3px; 
+    background: var(--input-bg); 
+    font-family: 'Nunito', sans-serif; 
+    font-size: 1.02rem;  
+}
+
+@media screen and (max-width: 800px) {
+    .middle {
+        width: 90%;
+    }
+}
