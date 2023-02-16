@@ -32,9 +32,7 @@
             <div class="list">
                 @foreach ($posts as $post)
                     <x-post :post="$post" />
-                @endforeach
-
-                <div class="links">{{ $posts->links() }}</div>
+                @endforeach 
             </div>
         </div>
 

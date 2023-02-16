@@ -22,8 +22,8 @@
             <form method="POST" class="form" action="{{ route('auth.login') }}">
                 @csrf 
 
-                <input type="email" placeholder="Email" name="email" value="{{ old('email') }}" readonly onfocus="this.removeAttribute('readonly');">
-                <input type="password" placeholder="Password" name="password" readonly onfocus="this.removeAttribute('readonly');">
+                <input type="email" placeholder="Email" name="email" value="{{ old('email') }}">
+                <input type="password" placeholder="Password" name="password">
                 <input type="submit" value="Submit">
             </form>
 

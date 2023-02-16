@@ -22,10 +22,10 @@
             <form method="POST" class="form" action="{{ route('auth.register') }}">
                 @csrf 
 
-                <input type="email" placeholder="Email" name="email" value="{{ old('email') }}" readonly onfocus="this.removeAttribute('readonly');">
-                <input type="text" maxlength="20" placeholder="Username" name="username" value="{{ old('username') }}" readonly onfocus="this.removeAttribute('readonly');">
-                <input type="password" placeholder="Password" name="password" readonly onfocus="this.removeAttribute('readonly');">
-                <input type="password" placeholder="Repeat password" name="repeated" readonly onfocus="this.removeAttribute('readonly');">
+                <input type="email" placeholder="Email" name="email" value="{{ old('email') }}">
+                <input type="text" maxlength="20" placeholder="Username" name="username" value="{{ old('username') }}">
+                <input type="password" placeholder="Password" name="password">
+                <input type="password" placeholder="Repeat password" name="repeated">
                 <input type="submit" value="Submit">
             </form>
 

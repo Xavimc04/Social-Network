@@ -24,26 +24,11 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('post.action') }}" class="actions">
-        @csrf 
+    @livewire('post-manager', [
+        'post' => $post
+    ])
 
-        <input type="hidden" name="post_id" value="{{ $post->id }}">
-        
-        <button type="submit" name="action" value="like" class="section">
-            <span class="material-icons">favorite</span>
-            {{ gettype($post->likes) == 'integer' ? $post->likes : count($post->likes) }}
-        </button> 
-
-        <button type="submit" name="action" value="report" class="section">
-            <span class="material-icons">report</span>
-            Report
-        </button> 
-
-        <button class="section">
-            <span class="material-icons">bookmark</span>
-            Save
-        </button> 
-    </form>
+    @livewireScripts 
 </div>
 
 <style>

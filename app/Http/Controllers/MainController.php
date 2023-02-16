@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class MainController extends Controller
 {
     public function get() {
-        $posts = DB::table('posts')->orderBy('created_at', 'desc')->cursorPaginate(10, ['*'], 'posts');
+        $posts = Post::all();
         $categories = Category::all(); 
 
         for($index = 0; $index < $posts->count(); $index++) {
