@@ -18,11 +18,15 @@ class AuthController extends Controller
 
     public function authRegister(Request $request) {
         if(!$request->filled('username') || !$request->filled('email') || !$request->filled('password') || !$request->filled('repeated')) {
-            return back()->with('error', 'All arguments must to be filled')->withInput(); 
+            toastr()->error('All arguments must to be filled...');
+
+            return back()->withInput();  
         }
 
         if($request->input('password') != $request->input('repeated')){
-            return back()->with('message', 'Password doesn\'t match')->withInput(); 
+            toastr()->error('Password doesn\'t match');
+
+            return back()->withInput(); 
         }
 
         $isEmailInUse = User::where('email', $request->input('email'))->first(); 
@@ -35,6 +39,7 @@ class AuthController extends Controller
             ]); 
             
             if($created){
+                toastr()->success('Account successfully created');
                 $request->session()->regenerate(); 
                 return redirect()->intended('/'); 
             }
@@ -48,10 +53,12 @@ class AuthController extends Controller
             'email' => $request->input('email'), 
             'password' => $request->input('password')
         ])) {
+            toastr()->success('Successfully logged in'); 
             $request->session()->regenerate(); 
             return redirect()->intended('/'); 
         };
         
-        return back()->with('message', 'This email or password does not exist')->onlyInput('email');
+        toastr()->error('This email or password does not exist'); 
+        return back()->onlyInput('email');
     }
 }

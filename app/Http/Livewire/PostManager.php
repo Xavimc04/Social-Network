@@ -33,7 +33,7 @@ class PostManager extends Component
             $currentPost->update(); 
         }
 
-        $this->post = $currentPost; 
+        $this->post = $currentPost;  
     }
 
     public function mount($post) {

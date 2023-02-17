@@ -8,43 +8,21 @@
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>Network | Main</title>
+
+        @livewireStyles 
     </head>
     <body> 
         <div class="middle">
-            <section class="header">
-                <h1>Welcome back, <span class="color">{{ Auth::user()->name }}</span></h1>
-                <h4 style="opacity: .5;">The current page has {{ $posts->count() }} posts for read...</h4>
-
-                @if (Session::has('success'))
-                    <div class="success">{{ Session::get('success') }}</div>
-                @else     
-                    @if (Session::has('error'))
-                        <div class="error">{{ Session::get('error') }}</div>
-                    @endif
-                @endif
-
-                <div class="bar">
-                    <span class="material-icons">search</span>
-                    <input class="filter" type="text" name="filter" placeholder="Profiles, categories..."> 
-                </div>
-            </section>
-
-            <div class="list">
-                @foreach ($posts as $post)
-                    <x-post :post="$post" />
-                @endforeach 
-            </div>
+            @livewire('main')
         </div>
 
         <x-blog-create :categories="$categories" />
-        <x-bottombar /> 
+        <x-bottombar />
+        
+        @livewireScripts 
     </body>
 
-    <style>
-        .links {
-            margin: 20px 0px; 
-        }
-
+    <style> 
         .success {
             margin-bottom: 20px; 
             color: var(--app-color);
