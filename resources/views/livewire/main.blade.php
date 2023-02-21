@@ -20,7 +20,7 @@
     <div class="list">
         @foreach ($posts as $post)
             <x-post :post="$post" />
-        @endforeach
+        @endforeach 
 
         <div style="padding: 20px 0px">
             <span>
@@ -29,7 +29,7 @@
                         {!! __('pagination.previous') !!}
                     </span>
                 @else
-                    <button wire:click="previousPage" wire:loading.attr="disabled" rel="prev">
+                    <button wire:click="previousPage">
                         {!! __('pagination.previous') !!} 
                     </button>
                 @endif
@@ -37,7 +37,7 @@
             
             <span>
                 @if ($posts->hasMorePages())
-                    <button wire:click="nextPage" wire:loading.attr="disabled" rel="next">
+                    <button wire:click="nextPage">
                         {!! __('pagination.next') !!}
                     </button>
                 @else

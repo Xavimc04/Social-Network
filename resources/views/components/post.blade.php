@@ -24,11 +24,22 @@
         </div>
     @endif
 
-    @livewire('post-manager', [
-        'post' => $post
-    ])
-
-    @livewireScripts 
+    <div class="actions">   
+        <button name="action" class="section" wire:click="like({{ $post->id }})">
+            <span class="material-icons">favorite</span>
+            {{ $post->likes == null ? 0 : count($post->likes) }}
+        </button> 
+    
+        <button name="action" class="section">
+            <span class="material-icons">report</span>
+            Report
+        </button> 
+    
+        <button class="section">
+            <span class="material-icons">bookmark</span>
+            Save
+        </button> 
+    </div>     
 </div>
 
 <style>

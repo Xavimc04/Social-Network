@@ -4,6 +4,7 @@
             <div title="Handle theme" class="material-icons blog-handle-button">dashboard</div>
         @endif
 
+        <div onclick="window.location.href = '/profile/{{ Auth::user()->id }}'" title="Profile" class="material-icons blog-handle-button">person</div>
         <div onclick="handleTheme()" title="Handle theme" class="material-icons blog-handle-button">dark_mode</div>
         <div onclick="handleCreator()" title="Create new post" class="material-icons blog-handle-button">edit_document</div>
     </div>
