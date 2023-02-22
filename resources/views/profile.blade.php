@@ -15,6 +15,22 @@
             "id" => $user->id
         ])
 
+        <div class="profile-edit">
+            <form method="POST" class="form" action="{{ route('profile.edit') }}" enctype="multipart/form-data">
+                @csrf 
+
+                @if (Session::has('error'))
+                    <div>{{ Session::get('error') }}</div>
+                @endif
+                
+                <div>Username</div>
+                <input type="text" name="name" value="{{ $user->name }}" maxlength="30" placeholder="Username">
+                <div>Profile picture</div>
+                <input type="file" name="image" accept="image/png, image/gif, image/jpeg" />
+                <input type="submit" value="Save changes">
+            </form>
+        </div>
+
         @livewireScripts 
 
         <x-blog-create :categories="$categories" />
@@ -22,7 +38,7 @@
     </body>
 
     <script> 
-        const handleProfiler = () => { 
+        const handleProfiler = () => {  
             let state = document.querySelector('.profile-edit').style.display 
     
             if(state != 'flex') { 
@@ -53,7 +69,7 @@
             height: 100%; 
             width: 100%; 
             background: rgba(2, 2, 2, 0.336); 
-            z-index: 5; 
+            z-index: 10; 
             display: none; 
             justify-content: center; 
             align-items: center; 

@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 use App\Models\Category; 
 use App\Models\User; 
 use App\Models\Post; 
+use App\Models\Save; 
 use App\Models\Follower; 
 use Illuminate\Support\Facades\Auth; 
 use Livewire\Component;
@@ -31,6 +32,28 @@ class Profile extends Component
             ]); 
 
             toastr()->success('Now you\'re currently following to this profile!');
+        }
+    }
+
+    public function save($post_id) {
+        $currentPost = Post::where('id', $post_id)->first(); 
+
+        if($currentPost) {
+            $doesRelationExist = Save::where('post_id', $post_id)
+            ->where('user_id', Auth::user()->id)
+            ->first(); 
+
+            if(!$doesRelationExist) {
+                Save::create([
+                    "user_id" => Auth::user()->id,
+                    "post_id" => $post_id 
+                ]); 
+
+                toastr()->success('Post has been saved');
+            } else {
+                $doesRelationExist->delete(); 
+                toastr()->info('Post has been unsaved'); 
+            }
         }
     }
 

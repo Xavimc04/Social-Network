@@ -14,7 +14,14 @@
             @endif
         </h3>
 
-        <div class="stamp">{{ $post->created_at }}</div>
+        <div class="stamp"> 
+            @if ($post->category_name != null)
+                <div class="category" title="filter category" wire:click="setSearch('#{{ $post->category_name }}')">#{{ $post->category_name }}</div>
+            @endif
+
+            <div>{{ $post->created_at }}</div>
+        </div>
+
         <div class="content">{{ $post->content }}</div>
     </div>
 
@@ -34,15 +41,24 @@
             <span class="material-icons">report</span>
             Report
         </button> 
+
+        <button name="action" class="section">
+            <span class="material-icons">mark_chat_unread</span>
+            Comment
+        </button> 
     
-        <button class="section">
+        <button class="section" wire:click="save({{ $post->id }})">
             <span class="material-icons">bookmark</span>
-            Save
+            {{ $post->is_saved ? 'Saved' : 'Save' }}
         </button> 
     </div>     
 </div>
 
 <style>
+    * {
+        user-select: none
+    }
+
     .no-image {
         width: 40px; 
         height: 40px; 
@@ -70,8 +86,29 @@
     .stamp {
         width: 100%;  
         margin-bottom: 20px; 
-        opacity: .6;
         font-size: .9rem; 
+        display: flex; 
+        align-items: center
+    }
+
+    .stamp div {
+        opacity: .6;
+    }
+
+    .stamp .category {
+        opacity: 1;
+        margin-right: 10px; 
+        background: var(--app-color); 
+        color: black; 
+        border-radius: 4px; 
+        padding: 5px 10px;  
+        transition: .4s
+    }
+
+    .stamp .category:hover {
+        cursor: pointer; 
+        opacity: .8;
+        transition: .4s
     }
 
     .post .left {  
@@ -96,11 +133,14 @@
         all: unset; 
         display: flex; 
         align-items: center; 
+        opacity: 1;
+        transition: .4s
     }
 
     .actions .section:hover {
-        cursor: pointer; 
-        transform: scale(.90);  
+        cursor: pointer;  
+        opacity: .7;
+        transition: .4s
     }
     
     .actions .section span {
@@ -131,5 +171,5 @@
     .user:hover {
         user-select: none; 
         cursor: default; 
-    }
+    } 
 </style>

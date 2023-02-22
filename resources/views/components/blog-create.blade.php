@@ -4,6 +4,8 @@
         
         @if ($categories->count() > 0)
             <select name="category" id="category">
+                <option value="0">Uncathegorized</option>
+
                 @foreach ($categories as $cat)
                     <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                 @endforeach

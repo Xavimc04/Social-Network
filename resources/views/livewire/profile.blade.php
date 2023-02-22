@@ -37,20 +37,4 @@
             @endforeach 
         </div>
     </div>
-
-    <div class="profile-edit">
-        <form method="POST" class="form" action="{{ route('profile.edit') }}" enctype="multipart/form-data">
-            @csrf 
-
-            @if (Session::has('error'))
-                <div>{{ Session::get('error') }}</div>
-            @endif
-            
-            <div>Username</div>
-            <input type="text" name="name" value="{{ $user->name }}" maxlength="30" placeholder="Username">
-            <div>Profile picture</div>
-            <input type="file" name="image" accept="image/png, image/gif, image/jpeg" />
-            <input type="submit" value="Save changes">
-        </form>
-    </div>
 </div>

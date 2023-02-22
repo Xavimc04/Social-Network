@@ -13,7 +13,7 @@
 
         <div class="bar">
             <span class="material-icons">search</span>
-            <input class="filter" wire:model="search" type="text" name="filter" placeholder="Profiles, categories...">
+            <input class="filter" wire:model.debounce.1000ms="search" type="text" name="filter" placeholder="Content, Categories (#...)">
         </div>
     </section>
 
@@ -29,17 +29,17 @@
                         {!! __('pagination.previous') !!}
                     </span>
                 @else
-                    <button wire:click="previousPage">
+                    <span class="color" wire:click="previousPage">
                         {!! __('pagination.previous') !!} 
-                    </button>
+                    </span>
                 @endif
             </span>
             
             <span>
                 @if ($posts->hasMorePages())
-                    <button wire:click="nextPage">
+                    <span class="color" wire:click="nextPage">
                         {!! __('pagination.next') !!}
-                    </button>
+                    </span>
                 @else
                     <span>
                         {!! __('pagination.next') !!}
@@ -49,3 +49,9 @@
         </div>
     </div>
 </div>
+
+<style>
+    .color:hover {
+        cursor: pointer; 
+    }
+</style>

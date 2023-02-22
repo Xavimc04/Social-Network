@@ -48,6 +48,12 @@ class AuthController extends Controller
         return back()->with('error', 'Error while creating your account, try again...'); 
     }
 
+    public function logout() {
+        Auth::logout(); 
+        toastr()->success('Successfully logged out, see you soon!'); 
+        return redirect('/'); 
+    }
+
     public function authLogin(Request $request) {
         if( Auth::attempt([
             'email' => $request->input('email'), 
