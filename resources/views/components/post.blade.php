@@ -27,7 +27,7 @@
 
     @if ($post->file_route != null)    
         <div class="left">
-            <img src="{{ url($post->file_route) }}" alt="Image">
+            <img class="image" onclick="window.open('{{ url($post->file_route) }}')" src="{{ url($post->file_route) }}" alt="Image">
         </div>
     @endif
 
@@ -36,21 +36,28 @@
             <span class="material-icons">favorite</span>
             {{ $post->likes == null ? 0 : count($post->likes) }}
         </button> 
-    
-        <button name="action" class="section">
-            <span class="material-icons">report</span>
-            Report
-        </button> 
 
         <button name="action" class="section">
             <span class="material-icons">mark_chat_unread</span>
             Comment
         </button> 
     
-        <button class="section" wire:click="save({{ $post->id }})">
-            <span class="material-icons">bookmark</span>
-            {{ $post->is_saved ? 'Saved' : 'Save' }}
-        </button> 
+        @if (Auth::user()->id != $post->user_id)
+            <button name="action" class="section">
+                <span class="material-icons">report</span>
+                Report
+            </button> 
+        
+            <button class="section" wire:click="save({{ $post->id }})">
+                <span class="material-icons">bookmark</span>
+                {{ $post->is_saved ? 'Saved' : 'Save' }}
+            </button> 
+        @else 
+            <button class="section" wire:click="delete({{ $post->id }})">
+                <span class="material-icons">delete</span>
+                Delete
+            </button> 
+        @endif
     </div>     
 </div>
 
@@ -172,4 +179,8 @@
         user-select: none; 
         cursor: default; 
     } 
+
+    .image:hover {
+        cursor: zoom-in
+    }
 </style>

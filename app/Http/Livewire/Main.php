@@ -115,4 +115,19 @@ class Main extends Component
             "posts" => $posts
         ]);
     }
+
+    public function delete($post_id)
+    {
+        $post = Post::where('id', $post_id)->first(); 
+
+        if($post) {
+            $saves = Save::where('post_id', $post_id)->get();
+            
+            foreach($saves as $save) {
+                $save->delete(); 
+            }
+
+            $post->delete();
+        }
+    }
 }

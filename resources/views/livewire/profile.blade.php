@@ -14,7 +14,7 @@
             </div>
 
             <div><span class="material-icons">celebration</span> Member since:  <a>{{ $user->created_at->diffForHumans() }}</a></div>
-            <div><span class="material-icons">post_add</span> Posts: <a>{{ $posts->count() }}</a></div>
+            <div><span class="material-icons">post_add</span> Posts: <a>{{ count($posts) }}</a></div>
             <div><span class="material-icons">contacts</span> Followers: <a>{{ $followers->count() }}</a></div>
             <div><span class="material-icons">verified</span> Role: <a>{{ $user->is_admin ? 'Administrator' : 'User' }}</a></div>
             
@@ -26,6 +26,7 @@
         <div class="myself">
             @if (Auth::user()->name == $user->name) 
                 <button onclick="handleProfiler()">Edit profile</button> 
+                <button wire:click="handlePostView">{{ $posts_view == "profile" ? 'Saved posts' : 'Profile posts' }}</button>
             @else 
                 <button wire:click="handleFollow">{{ $following ? 'Unfollow' : 'Follow' }}</button>
             @endif
