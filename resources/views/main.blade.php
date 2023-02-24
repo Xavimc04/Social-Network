@@ -37,7 +37,7 @@
             display: flex; 
             width: 100%;
             align-items: center;  
-            background: var(--input-bg); 
+            background: rgba(0, 0, 0, 0.068); 
             padding: 5px 0px; 
             border-radius: 5px; 
         }

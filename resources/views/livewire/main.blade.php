@@ -153,12 +153,12 @@
         border-radius: 3px;    
         background-color: rgba(0, 0, 0, 0.068);
         border-left: 10px solid rgba(0, 0, 0, 0.068); 
-        transition: all .4s; 
+        transition: border-color .4s; 
     }
 
     .profile:hover {
         cursor: pointer; 
-        transition: .4s; 
+        transition: border-color .4s; 
         border-left: 10px solid var(--app-color); 
         user-select: none; 
     }
