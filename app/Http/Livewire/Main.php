@@ -12,14 +12,22 @@ use Illuminate\Support\Facades\Auth;
 class Main extends Component
 {  
     use WithPagination;
-    public $search = '';  
+    public $search = '', $perPage = 10, $filter_type = "posts";  
 
     public function updatingSearch() {
         $this->resetPage();
     }
 
-    public function setSearch($content) {
+    public function filterByType($type) {
+        $this->filter_type = $type; 
+    }
+
+    public function setSearch($content, $type) {
         $this->search = $content;
+
+        if($type) {
+            $this->filterByType($type); 
+        }
     }
 
     public function save($post_id) {
@@ -71,14 +79,22 @@ class Main extends Component
 
     public function render()
     {
-        if(str_contains($this->search, '#')){
-            $founded_category = Category::where('name', 'like', '%' . str_replace('#', '', $this->search) . '%')->first(); 
-            $posts = Post::where('category_id', $founded_category->id)->orderBy('created_at', 'DESC')->paginate(7); 
+        $profiles = null; 
+        $posts = []; 
+
+        if($this->filter_type == "categories"){
+            $founded_category = Category::where('name', 'like', '%' . $this->search . '%')->first(); 
+
+            if($founded_category) {
+                $posts = Post::where('category_id', $founded_category->id)->orderBy('created_at', 'DESC')->paginate($this->perPage); 
+            }
+        } elseif($this->filter_type == "profiles") {
+            $profiles = User::where('name', 'like', '%' . $this->search . '%')->get();
         } else {
-            $posts = Post::where('content', 'like', '%' . $this->search . '%')->orderBy('created_at', 'DESC')->paginate(7); 
+            $posts = Post::where('content', 'like', '%' . $this->search . '%')->orderBy('created_at', 'DESC')->paginate($this->perPage); 
         }
 
-        for($index = 0; $index < $posts->count(); $index++) {
+        for($index = 0; $index < count($posts); $index++) {
             $user = User::where('id', $posts[$index]->user_id)->first();
             
             if($posts[$index]->category_id != 0) {
@@ -112,7 +128,9 @@ class Main extends Component
         }
 
         return view('livewire.main', [
-            "posts" => $posts
+            "posts" => $posts, 
+            "profiles" => $profiles, 
+            "filter_type" => $this->filter_type
         ]);
     }
 

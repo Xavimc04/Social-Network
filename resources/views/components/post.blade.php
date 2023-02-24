@@ -16,7 +16,7 @@
 
         <div class="stamp"> 
             @if ($post->category_name != null)
-                <div class="category" title="filter category" wire:click="setSearch('#{{ $post->category_name }}')">#{{ $post->category_name }}</div>
+                <div class="category" title="filter category" wire:click="setSearch('{{ $post->category_name }}', 'categories')">#{{ $post->category_name }}</div>
             @endif
 
             <div>{{ $post->created_at }}</div>
