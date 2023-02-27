@@ -80,10 +80,12 @@ class Main extends Component
     public function render()
     {
         $profiles = null; 
+        $categories = []; 
         $posts = []; 
 
         if($this->filter_type == "categories"){
             $founded_category = Category::where('name', 'like', '%' . $this->search . '%')->first(); 
+            $categories = Category::all(); 
 
             if($founded_category) {
                 $posts = Post::where('category_id', $founded_category->id)->orderBy('created_at', 'DESC')->paginate($this->perPage); 
@@ -130,6 +132,7 @@ class Main extends Component
         return view('livewire.main', [
             "posts" => $posts, 
             "profiles" => $profiles, 
+            "categories" => $categories, 
             "filter_type" => $this->filter_type
         ]);
     }

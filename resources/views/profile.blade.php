@@ -15,22 +15,6 @@
             "id" => $user->id
         ])
 
-        <div class="profile-edit">
-            <form method="POST" class="form" action="{{ route('profile.edit') }}" enctype="multipart/form-data">
-                @csrf 
-
-                @if (Session::has('error'))
-                    <div>{{ Session::get('error') }}</div>
-                @endif
-                
-                <div>Username</div>
-                <input type="text" name="name" value="{{ $user->name }}" maxlength="30" placeholder="Username">
-                <div>Profile picture</div>
-                <input type="file" name="image" accept="image/png, image/gif, image/jpeg" />
-                <input type="submit" value="Save changes">
-            </form>
-        </div>
-
         @livewireScripts 
 
         <x-blog-create :categories="$categories" />
@@ -38,22 +22,22 @@
     </body>
 
     <script> 
-        const handleProfiler = () => {  
-            let state = document.querySelector('.profile-edit').style.display 
-    
+        const handleCreator = () => { 
+            let state = document.querySelector('.blog-create').style.display 
+
             if(state != 'flex') { 
-                document.querySelector('.profile-edit').style.display = 'flex'; 
+                document.querySelector('.blog-create').style.display = 'flex'; 
             } else { 
-                document.querySelector('.profile-edit').style.display = 'none'
+                document.querySelector('.blog-create').style.display = 'none'
             }
         }
-    
+
         document.onkeydown = (event) => {
-            let state = document.querySelector('.profile-edit').style.display 
-    
+            let state = document.querySelector('.blog-create').style.display 
+
             if(state != 'none') {
                 if(event.key == 'Escape' || event.key == 'Esc' || event.keyCode === 27) {
-                    handleProfiler(); 
+                    handleCreator(); 
                 }
             }
         } 

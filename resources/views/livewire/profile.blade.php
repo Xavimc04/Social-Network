@@ -24,10 +24,8 @@
         </div>
 
         <div class="myself">
-            @if (Auth::user()->name == $user->name) 
-                <button onclick="handleProfiler()">Edit profile</button> 
-                <button wire:click="handlePostView">{{ $posts_view == "profile" ? 'Saved posts' : 'Profile posts' }}</button>
-                <button onclick="window.location.href = '/logout'" style="background-color: #ff6645; color: white">Logout</button> 
+            @if (Auth::user()->name == $user->name)  
+                <button wire:click="handlePostView">{{ $posts_view == "profile" ? 'Saved posts' : 'Profile posts' }}</button> 
             @else 
                 <button wire:click="handleFollow">{{ $following ? 'Unfollow' : 'Follow' }}</button>
             @endif

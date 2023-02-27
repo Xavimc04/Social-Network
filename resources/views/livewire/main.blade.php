@@ -59,40 +59,73 @@
                 <div>No profiles founded</div>
             @endif  
         @else    
+            @if ($filter_type == 'categories' && count($posts) == 0)
+                <div class="categories">
+                    @foreach ($categories as $category)
+                        <div wire:click="setSearch('{{ $category->name }}', 'categories')">#{{ $category->name }}</div>
+                    @endforeach
+                </div>
+            @endif
+
             @foreach ($posts as $post)
                 <x-post :post="$post" />
             @endforeach 
             
-            <div style="padding: 20px 0px">
-                <span>
-                    @if ($posts->onFirstPage())
-                        <span>
-                            {!! __('pagination.previous') !!}
-                        </span>
-                    @else
-                        <span class="color" wire:click="previousPage">
-                            {!! __('pagination.previous') !!} 
-                        </span>
-                    @endif
-                </span>
-                
-                <span>
-                    @if ($posts->hasMorePages())
-                        <span class="color" wire:click="nextPage">
-                            {!! __('pagination.next') !!}
-                        </span>
-                    @else
-                        <span>
-                            {!! __('pagination.next') !!}
-                        </span>
-                    @endif
-                </span>
-            </div>
+            @if (count($posts) > 0)    
+                <div style="padding: 20px 0px">
+                    <span>
+                        @if ($posts->onFirstPage())
+                            <span>
+                                {!! __('pagination.previous') !!}
+                            </span>
+                        @else
+                            <span class="color" wire:click="previousPage">
+                                {!! __('pagination.previous') !!} 
+                            </span>
+                        @endif
+                    </span>
+                    
+                    <span>
+                        @if ($posts->hasMorePages())
+                            <span class="color" wire:click="nextPage">
+                                {!! __('pagination.next') !!}
+                            </span>
+                        @else
+                            <span>
+                                {!! __('pagination.next') !!}
+                            </span>
+                        @endif
+                    </span>
+                </div>
+            @endif
         @endif
     </div>
 </div>
 
 <style>
+    .categories {
+        width: 100%; 
+        margin-top: 20px; 
+        display: flex; 
+        flex-wrap: wrap; 
+    }
+
+    .categories div {
+        opacity: 1;
+        margin-right: 10px; 
+        background: var(--app-color); 
+        color: black; 
+        border-radius: 4px; 
+        padding: 5px 10px;  
+        transition: .4s
+    }
+
+    .categories div:hover {
+        cursor: pointer; 
+        opacity: .8;
+        transition: .4s
+    }
+
     .filter_actions {
         display: flex; 
         flex-wrap: wrap; 

@@ -14,6 +14,14 @@ body[data-theme="dark"] {
     --app-color: rgb(243, 201, 85); 
 }
 
+body[data-theme="dimmed"] {
+    --bg-color: #2a3b4d;  
+    --main-color: whitesmoke;
+    --input-bg: rgba(44, 44, 44, 0.733);
+    --input-color: white; 
+    --app-color: rgb(85, 243, 93); 
+}
+
 body {
     padding: 0; 
     margin: 0; 
