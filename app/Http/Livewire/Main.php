@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class Main extends Component
 {  
     use WithPagination;
-    public $search = '', $perPage = 10, $filter_type = "posts";  
+    public $search = '', $perPage = 10, $filter_type = "posts"; 
 
     public function updatingSearch() {
         $this->resetPage();
@@ -133,7 +133,7 @@ class Main extends Component
             "posts" => $posts, 
             "profiles" => $profiles, 
             "categories" => $categories, 
-            "filter_type" => $this->filter_type
+            "filter_type" => $this->filter_type,  
         ]);
     }
 

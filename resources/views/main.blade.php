@@ -7,10 +7,12 @@
         <link rel="stylesheet" href="{{ URL::asset('css/global.css') }}" />
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
         <title>Network | Main</title>
 
         @livewireStyles 
     </head>
+
     <body> 
         <div class="middle">
             @livewire('main')
@@ -21,6 +23,8 @@
         
         @livewireScripts 
     </body>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
     <style> 
         .success {

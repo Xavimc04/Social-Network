@@ -10,6 +10,9 @@ use App\Http\Controllers\SettingsController;
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/', [MainController::class, 'get']);
     Route::get('/account-settings', [SettingsController::class, 'get']);
+    Route::get('/app/help', [MainController::class, 'get']);
+    Route::get('/app/contact-support', [MainController::class, 'get']);
+    Route::get('/app/about-us', [MainController::class, 'get']);
 
     Route::post('/post/create', [MainController::class, 'createPost'])->name('post.new'); 
 
@@ -17,8 +20,6 @@ Route::group(['middleware' => 'auth'], function() {
         $profile = new ProfileController(); 
         return $profile->get($identifier); 
     }); 
-
-    Route::post('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 }); 
 
 Route::get('login', [AuthController::class, 'getLogin'])->name('login');

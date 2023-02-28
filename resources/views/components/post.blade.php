@@ -2,7 +2,7 @@
     <div class="right">
         <h3 class="user" onclick="window.location.href = '/profile/{{ $post->user->id }}'">
             @if ($post->user->profile_route != null)
-                <img class="no-image" src="{{ url($post->user->profile_route) }}" alt="Image">
+                <img class="no-image" src="{{ url($post->user->profile_route) }}">
             @else
                 <div class="no-image">{{ $post->user->name[0] }}</div>
             @endif
@@ -22,7 +22,11 @@
             <div>{{ $post->created_at }}</div>
         </div>
 
-        <div class="content">{{ $post->content }}</div>
+        <div class="content">
+            <pre>
+                {{ $post->content }}
+            </pre>
+        </div>
     </div>
 
     @if ($post->file_route != null)    

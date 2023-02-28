@@ -24,8 +24,7 @@
             <select class="theme-selector" onchange="handleTheme()">
                 <option value=""></option>
                 <option value="light">Light</option>
-                <option value="dark">Dark</option>
-                <option value="dimmed">Dimmed</option>
+                <option value="dark">Dark</option> 
             </select>
         </div>
 
@@ -113,7 +112,13 @@
     </div>
 </div>
 
-<script type="text/javascript" src="{{ URL::asset('js/theme.js') }}"></script> 
+<script type="text/javascript" src="{{ URL::asset('js/theme.js') }}"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        document.querySelector('.theme-selector').value = localStorage.getItem('theme'); 
+    })
+</script>
 
 <style>
     .back {
@@ -190,7 +195,7 @@
         width: 50px; 
         height: 50px; 
         background: var(--app-color);
-        color: var(--main-color);  
+        color: var(--bg-color);  
         margin-right: 20px; 
         border-radius: 50%; 
         display: flex; 
@@ -202,6 +207,7 @@
         margin-top: 0; 
         width: auto; 
         background: transparent; 
+        padding: 0px 20px; 
         color: var(--main-color); 
     }
 

@@ -1,46 +1,31 @@
 <div class="blog-create">
-    <form method="POST" class="form" action="{{ route('post.new') }}" enctype="multipart/form-data">
-        @csrf 
-        
-        @if ($categories->count() > 0)
-            <select name="category" id="category">
-                <option value="0">Uncathegorized</option>
-
-                @foreach ($categories as $cat)
-                    <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                @endforeach
-            </select>
-        @else
-            <input type="text" disabled value="Uncathegorized">
-        @endif 
-        
-        <input type="hidden" name="identifier" value="{{ Auth::user()->id }}">
-        <textarea spellcheck="false" name="content" placeholder="Information here..."></textarea> 
-        <input type="file" name="image" accept="image/png, image/gif, image/jpeg" />
-        <input type="submit" value="Create">
-    </form>
+    @livewire('post.post', [
+        "categories" => $categories
+    ]); 
+    
+    @livewireScripts 
 </div>
 
 <style>
     .blog-create {
-        position: absolute; 
+        position: fixed; 
         height: 100%; 
         width: 100%; 
         background: rgba(2, 2, 2, 0.336); 
         z-index: 5;
         display: none;   
         justify-content: center; 
-        align-items: center; 
+        align-items: center;  
     } 
 
-    form {
+    .form {
         background: var(--bg-color); 
         padding: 20px; 
         border-radius: 4px; 
         width: 400px; 
     }
 
-    form div {
+    .form div {
         margin-top: 10px; 
     }
 
@@ -59,4 +44,24 @@
     textarea:focus {
         outline: none; 
     }
+
+    #editor {
+        max-height: 50vh;  
+        border: none;   
+        overflow: scroll; 
+    }
+
+    .ql-toolbar {
+        border: none; 
+    }
+
+    .ql-toolbar.ql-snow {
+        border: none;
+    } 
+
+    .ql-editor {
+        font-size: 16px;
+        line-height: 1.5;
+        border: none; 
+    }  
 </style>

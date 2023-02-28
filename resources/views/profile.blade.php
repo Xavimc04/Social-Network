@@ -21,28 +21,6 @@
         <x-bottombar /> 
     </body>
 
-    <script> 
-        const handleCreator = () => { 
-            let state = document.querySelector('.blog-create').style.display 
-
-            if(state != 'flex') { 
-                document.querySelector('.blog-create').style.display = 'flex'; 
-            } else { 
-                document.querySelector('.blog-create').style.display = 'none'
-            }
-        }
-
-        document.onkeydown = (event) => {
-            let state = document.querySelector('.blog-create').style.display 
-
-            if(state != 'none') {
-                if(event.key == 'Escape' || event.key == 'Esc' || event.keyCode === 27) {
-                    handleCreator(); 
-                }
-            }
-        } 
-    </script>
-
     <style>
         .error {
             color: rgb(224, 82, 82); 
