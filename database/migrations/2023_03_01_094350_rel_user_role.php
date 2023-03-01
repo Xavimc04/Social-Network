@@ -7,17 +7,17 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     public function up() {
-        Schema::create('saved_posts', function (Blueprint $table) {
+        Schema::create('rel_user_role', function (Blueprint $table) {
             $table->id(); 
-            $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('user_id'); 
+            $table->unsignedBigInteger('role_id');
 
-            $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('role_id')->references('id')->on('roles');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
     public function down() {
-        Schema::dropIfExists('saved_posts');
+        Schema::dropIfExists('rel_user_role');
     }
 };

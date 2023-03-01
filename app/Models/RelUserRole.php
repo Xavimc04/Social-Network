@@ -11,4 +11,7 @@ class RelUserRole extends Model
     
     public $timestamps = false; 
 
+    protected $fillable = [
+        'user_id', 'role_id'
+    ]; 
 }
