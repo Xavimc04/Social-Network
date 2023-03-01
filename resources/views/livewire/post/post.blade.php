@@ -17,7 +17,7 @@
 
     <input type="file" wire:model="image" accept="image/png, image/gif, image/jpeg" />
     <div wire:loading wire:target="image">Uploading...</div>
-    <input type="submit" wire:click="create">
+    <input type="submit" wire:click="create" value="Post">
 </div>
 
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -29,11 +29,10 @@
                 [{ header: [1, 2, 3, 4, 5, 6, false] }],
                 ['bold', 'italic', 'underline', 'strike'],
                 [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                [{ 'align': [] }],
-                ['link', 'code-block']
+                [{ 'align': [] }]
             ]
         },
-        maxLength: null,
+        maxLength: 1200,
         theme: 'snow'
     });
 

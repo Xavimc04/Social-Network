@@ -27,6 +27,19 @@ class Post extends Component
         }
     }
 
+    function validateExtension() {
+        $available_formats = ['jpg', 'jpeg', 'png', 'gif', 'webp']; 
+
+        foreach ($available_formats as $format) {
+            if($this->image->getClientOriginalExtension() == $format) {
+                return true;  
+            }
+        } 
+
+        toastr()->error('Your post can\'t be created, the image has incorrect format, please, check it.'); 
+        return false;  
+    }
+
     public function create() {
         if(strlen($this->content) < 10) {
             toastr()->error('Content must be 10 minimum args to be created...'); 
@@ -35,7 +48,11 @@ class Post extends Component
 
         $filename = ""; 
 
-        if($this->image) {
+        if($this->image) { 
+            if(!$this->validateExtension()) {
+                return; 
+            }
+
             $this->filename = uniqid(); 
             $this->image->storeAs('images/posts', $this->filename . '.' . $this->image->getClientOriginalExtension(), 'real_public'); 
             
@@ -54,6 +71,12 @@ class Post extends Component
         }
 
         toastr()->success('Post successfully created!'); 
+        // @ Reset content 
+        $this->content = ""; 
+        // @ Livewire components event
+        $this->emit('post-created'); 
+        // @ Javascript event
+        $this->dispatchBrowserEvent('post-created');
     }
 
     public function render()

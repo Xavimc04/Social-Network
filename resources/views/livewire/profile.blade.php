@@ -15,8 +15,7 @@
 
             <div><span class="material-icons">celebration</span> Member since:  <a>{{ $user->created_at->diffForHumans() }}</a></div>
             <div><span class="material-icons">post_add</span> Posts: <a>{{ count($posts) }}</a></div>
-            <div><span class="material-icons">contacts</span> Followers: <a>{{ $followers->count() }}</a></div>
-            <div><span class="material-icons">verified</span> Role: <a>{{ $user->is_admin ? 'Administrator' : 'User' }}</a></div>
+            <div><span class="material-icons">contacts</span> Followers: <a>{{ $followers->count() }}</a></div> 
             
             @if (Auth::user()->name != $user->name)
                 <div><span class="material-icons">fact_check</span> {{ $following ? 'Following' : 'Unfollowing' }}</div>

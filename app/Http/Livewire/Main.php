@@ -14,6 +14,10 @@ class Main extends Component
     use WithPagination;
     public $search = '', $perPage = 10, $filter_type = "posts"; 
 
+    protected $listeners = [
+        'post-created' => 'updatingSearch'
+    ];  
+
     public function updatingSearch() {
         $this->resetPage();
     }

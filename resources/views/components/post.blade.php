@@ -4,14 +4,10 @@
             @if ($post->user->profile_route != null)
                 <img class="no-image" src="{{ url($post->user->profile_route) }}">
             @else
-                <div class="no-image">{{ $post->user->name[0] }}</div>
+                <div class="no-image" style="background: var(--app-color);">{{ $post->user->name[0] }}</div>
             @endif
 
             {{ $post->user->name }}
-
-            @if ($post->user->is_admin)
-                <span class="material-icons">verified</span>
-            @endif
         </h3>
 
         <div class="stamp"> 
@@ -23,9 +19,9 @@
         </div>
 
         <div class="content">
-            <pre>
-                {{ $post->content }}
-            </pre>
+            @php
+                echo $post->content;
+            @endphp
         </div>
     </div>
 
@@ -72,9 +68,8 @@
 
     .no-image {
         width: 40px; 
-        height: 40px; 
-        background: var(--app-color);
-        color: var(--main-color);  
+        height: 40px;  
+        color: var(--main-color);   
         margin-right: 20px; 
         border-radius: 50%; 
         display: flex; 

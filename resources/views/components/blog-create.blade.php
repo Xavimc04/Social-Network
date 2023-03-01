@@ -6,6 +6,12 @@
     @livewireScripts 
 </div>
 
+<script>
+    window.addEventListener('post-created', event => {
+        document.querySelector('.blog-create').style.display = 'none';  
+    })
+</script>
+
 <style>
     .blog-create {
         position: fixed; 

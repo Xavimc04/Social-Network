@@ -1,8 +1,7 @@
 <div>
-    <div class="blog-bottom-fix"> 
-        @if (Auth::user()->is_admin) 
-            <div title="Handle theme" class="material-icons blog-handle-button">dashboard</div>
-        @endif
+    <div class="blog-bottom-fix">  
+        <!-- @ Admin -->
+        <div onclick="window.location.href = '/admin/dashboard'" title="Admin dashboard" class="material-icons blog-handle-button">dashboard</div>
 
         <div onclick="window.location.href = '/profile/{{ Auth::user()->id }}'" title="Profile" class="material-icons blog-handle-button">person</div>
         <div onclick="window.location.href = '/account-settings'" title="Settings" class="material-icons blog-handle-button">settings</div>

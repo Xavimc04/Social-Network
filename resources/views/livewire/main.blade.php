@@ -45,14 +45,10 @@
                         @if ($profile->profile_route != null)
                             <img class="no-image" src="{{ url($profile->profile_route) }}" alt="Image">
                         @else
-                            <div class="no-image">{{ $profile->name[0] }}</div>
+                            <div class="no-image" style="background: var(--app-color);">{{ $profile->name[0] }}</div>
                         @endif
             
-                        <strong>{{ $profile->name }}</strong>
-            
-                        @if ($profile->is_admin)
-                            <span class="material-icons">verified</span>
-                        @endif
+                        <strong>{{ $profile->name }}</strong> 
                     </div>
                 @endforeach
             @else 
@@ -167,8 +163,7 @@
 
     .no-image {
         width: 40px; 
-        height: 40px; 
-        background: var(--app-color);
+        height: 40px;  
         color: var(--main-color);  
         margin-right: 20px; 
         border-radius: 50%; 

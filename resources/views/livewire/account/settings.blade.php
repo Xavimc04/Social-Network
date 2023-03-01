@@ -2,16 +2,20 @@
     <div class="material-icons back" onclick="window.location.href = '/'">arrow_back</div>
 
     <section class="header">
-        @if (Auth::user()->profile_route != null)
-            <img class="rounded-image" src="{{ url(Auth::user()->profile_route) }}" alt="Image">
-        @else
-            <div class="rounded-image">{{ Auth::user()->name[0] }}</div>
-        @endif
+        <div class="flex">
+            @if ($user->profile_route != null)
+                <img class="rounded-image" src="{{ url($user->profile_route) }}" alt="Image">
+            @else
+                <div class="rounded-image" style="background: var(--app-color);">{{ $user->name[0] }}</div>
+            @endif
 
-        <div class="profile">
-            <div class="username">{{ Auth::user()->name }}</div>
-            <div>Account created {{ Auth::user()->created_at->diffForHumans() }}</div>
+            <div class="profile">
+                <div class="username">{{ $user->name }}</div>
+                <div>Account created {{ $user->created_at->diffForHumans() }}</div>
+            </div>
         </div>
+
+        <div class="save" wire:click="save">Save settings</div>
     </section> 
 
     <div class="settings">
@@ -37,8 +41,7 @@
             <div class="edit_input">
                 <input type="text" wire:model="name" {{ $editing_name ? '' : 'disabled' }} maxlength="30">
                 
-                @if ($editing_name)
-                    <div wire:click="save('name')" class="material-icons">save</div>
+                @if ($editing_name) 
                     <div wire:click="handleEdit" class="material-icons">close</div>
                 @else 
                     <div wire:click="handleEdit" class="material-icons">edit</div>
@@ -53,7 +56,8 @@
             </div>
 
             <div>
-                <span class="material-icons">more_vert</span>
+                <input type="file" style="display: none" id="image-selector" wire:model="image" accept="image/png, image/gif, image/jpeg"/>
+                <label for="image-selector"><span class="material-icons">more_vert</span></label>
             </div>
         </div>
 
@@ -61,17 +65,6 @@
             <div class="left">
                 <span class="material-icons">notifications</span>
                 <div>Notifications</div>
-            </div>
-        </div>
-
-        <div class="option">
-            <div class="left">
-                <span class="material-icons">person</span>
-                <div>Status</div>
-            </div>
-
-            <div>
-                {{ Auth::user()->is_admin ? 'Administrator' : 'User' }}
             </div>
         </div>
 
@@ -140,15 +133,43 @@
         margin-top: 40px; 
         display: flex; 
         flex-direction: row; 
+        justify-content: space-between
+    }
+
+    .header .save {
+        background: transparent;  
+        border: 1px solid gray; 
+        color: gray; 
+        border-radius: 4px; 
+        font-size: 1.1rem; 
+        padding: 0px 20px; 
+        display: flex; 
+        align-items: center;  
+        transition: .4s
+    }
+
+    .header .save:hover {
+        cursor: pointer; 
+        user-select: none; 
+        border: 1px solid var(--app-color); 
+        background: var(--app-color);
+        box-shadow: 0px 0px 10px var(--app-color); 
+        color: black; 
+        transition: .4s
+    }
+
+    .header .flex {
+        display: flex; 
+        flex-direction: row; 
         align-items: center; 
     }
 
-    .header .profile {
+    .header .flex .profile {
         display: flex; 
         flex-direction: column;  
     }
 
-    .header .profile .username {
+    .header .flex .profile .username {
         font-weight: 900; 
         font-size: 1.4rem; 
     }
@@ -193,8 +214,7 @@
 
     .rounded-image {
         width: 50px; 
-        height: 50px; 
-        background: var(--app-color);
+        height: 50px;  
         color: var(--bg-color);  
         margin-right: 20px; 
         border-radius: 50%; 

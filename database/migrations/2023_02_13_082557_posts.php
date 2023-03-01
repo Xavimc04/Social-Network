@@ -13,8 +13,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('category_id')->default(0); 
             $table->longText('content');
-            $table->longText('file_route')->nullable();
-            $table->longText('tags')->nullable();
+            $table->longText('file_route')->nullable(); 
             $table->longText('likes')->nullable(); 
             $table->timestamps();   
         });
