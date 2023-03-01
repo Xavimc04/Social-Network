@@ -96,6 +96,6 @@ select {
 
 @media screen and (max-width: 800px) {
     .middle {
-        width: 90%;
+        width: 90% !important;
     }
 }

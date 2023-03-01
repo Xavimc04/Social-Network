@@ -11,7 +11,7 @@
     </head>
     <body>
         <div class="container">
-            <h1><span class="material-icons">public</span>Social <a>Network</a></h1>
+            <h1><span class="material-icons">public</span>Net<a>Share</a></h1>
 
             @if (Session::has('error'))
                 <div class="error">{{ Session::get('error') }}</div>

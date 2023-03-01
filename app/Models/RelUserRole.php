@@ -10,6 +10,7 @@ class RelUserRole extends Model
     use HasFactory;
     
     public $timestamps = false; 
+    public $table = "rel_user_role"; 
 
     protected $fillable = [
         'user_id', 'role_id'
