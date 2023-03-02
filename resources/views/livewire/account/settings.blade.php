@@ -25,8 +25,7 @@
                 <div>Themes</div>
             </div>
 
-            <select class="theme-selector" onchange="handleTheme()">
-                <option value=""></option>
+            <select class="theme-selector" onchange="handleTheme()"> 
                 <option value="light">Light</option>
                 <option value="dark">Dark</option> 
             </select>

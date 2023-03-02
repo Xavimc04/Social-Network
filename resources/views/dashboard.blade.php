@@ -13,7 +13,29 @@
     </head>
 
     <body> 
-        <div class="middle">
+        <div class="middle"> 
+            <div class="stats">
+                <div class="section">
+                    Categories: 53
+                </div>
+
+                <div class="section">
+                    Posts: 53
+                </div>
+
+                <div class="section">
+                    Accounts: 53
+                </div>
+
+                <div class="section">
+                    Roles: 53
+                </div>
+
+                <div class="section">
+                    Active Sessions: 2
+                </div>
+            </div>
+
             @livewire('admin.dashboard')
 
             <div>
@@ -36,6 +58,23 @@
     <style> 
         .middle {
             width: 1300px;     
+        }
+
+        .stats {
+            display: flex; 
+            flex-direction: row;
+            flex-wrap: wrap;  
+            justify-content: space-between; 
+            width: 100%;   
+        }
+
+        .stats .section {
+            height: 100%;
+            background: orange;
+            width: 150px;  
+            padding: 20px 15px; 
+            border-radius: 3px;
+            margin-top: 20px;  
         }
     </style>
 </html>

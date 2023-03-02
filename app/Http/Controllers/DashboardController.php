@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\RelUserRole as UserRoles; 
 use App\Models\Role; 
+use App\Models\Category; 
 
 class DashboardController extends Controller
 {
@@ -25,7 +26,7 @@ class DashboardController extends Controller
         if(!$hasPerms) {
             toastr()->error('You don\'t have permissions to access this route.'); 
             return redirect('/'); 
-        }
+        } 
 
         return view('dashboard'); 
     }
