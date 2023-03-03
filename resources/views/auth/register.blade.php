@@ -12,27 +12,16 @@
     <body>
         <div class="container">
             <h1><span class="material-icons">public</span>Social <a>Network</a></h1> 
+            <div>¡Hey! ¿First time here?</div>
 
-            @if (Session::has('error'))
-                <div class="error">{{ Session::get('error') }}</div>
-            @else
-                <div>¡Hey! ¿First time here?</div>
-            @endif
-
-            <form method="POST" class="form" action="{{ route('auth.register') }}">
-                @csrf 
-
-                <input type="email" placeholder="Email" name="email" value="{{ old('email') }}">
-                <input type="text" maxlength="20" placeholder="Username" name="username" value="{{ old('username') }}">
-                <input type="password" placeholder="Password" name="password">
-                <input type="password" placeholder="Repeat password" name="repeated">
-                <input type="submit" value="Submit">
-            </form>
+            @livewire('account.auth.register')
 
             <div class="login"> 
                 <a class="link" href="{{ URL::route('login'); }}">¿Already have an account? Log in</a>
             </div>
         </div>
+
+        @livewireScripts 
 
         <script type="text/javascript" src="{{ URL::asset('js/theme.js') }}"></script>
     </body>
@@ -80,6 +69,35 @@
             transition: .4s; 
             opacity: 1; 
             cursor: pointer; 
+        }
+
+        .form {
+            margin-top: 20px; 
+        }
+
+        .form div select { 
+            margin-top: 0; 
+            width: 49%; 
+            font-size: .9rem; 
+        }
+
+        .form div {
+            display: flex; 
+            margin-top: 10px; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+
+        .form div input[type="date"] {
+            width: 49%; 
+        }
+
+        .form div label {
+            padding-left: 20px; 
+        }
+
+        .form div:not(:first-child) {
+            margin: 20px 0px; 
         }
     </style>
 </html>

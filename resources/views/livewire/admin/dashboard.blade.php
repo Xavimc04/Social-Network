@@ -5,6 +5,7 @@
         <div wire:click="setPage('posts')" class="{{ $selected == 'posts' ? 'selected' : '' }}">Posts</div>
         <div wire:click="setPage('roles')" class="{{ $selected == 'roles' ? 'selected' : '' }}">Roles</div>
         <div wire:click="setPage('permissions')" class="{{ $selected == 'permissions' ? 'selected' : '' }}">Permissions</div>
+        <div wire:click="setPage('emails')" class="{{ $selected == 'emails' ? 'selected' : '' }}">Emails</div>
     </nav>
 </div>
 
@@ -12,8 +13,9 @@
     .nav { 
         width: 100%; 
         display: flex; 
-        flex-direction: row; 
-        padding: 20px 0px; 
+        flex-direction: row;
+        margin-top: 40px;  
+        margin-bottom: 20px;  
     }
 
     .nav div:not(:first-child) {
@@ -23,7 +25,7 @@
     .nav div {
         user-select: none; 
         cursor: pointer; 
-        border-bottom: 4px solid gray; 
+        border-bottom: 4px solid black; 
         padding-bottom: 10px; 
         transition: .4s;
     }

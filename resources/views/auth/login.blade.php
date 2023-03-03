@@ -12,25 +12,16 @@
     <body>
         <div class="container">
             <h1><span class="material-icons">public</span>Net<a>Share</a></h1>
+            <div>¡Hey! ¿Another time here?</div>
 
-            @if (Session::has('error'))
-                <div class="error">{{ Session::get('error') }}</div>
-            @else
-                <div>¡Hey! ¿Another time here?</div>
-            @endif
-
-            <form method="POST" class="form" action="{{ route('auth.login') }}">
-                @csrf 
-
-                <input type="email" placeholder="Email" name="email" value="{{ old('email') }}">
-                <input type="password" placeholder="Password" name="password">
-                <input type="submit" value="Submit">
-            </form>
+            @livewire('account.auth.login')
 
             <div class="register"> 
                 <a class="link" href="{{ URL::route('register'); }}">¿Doesn't have an account? Register now</a>
             </div>
         </div>
+
+        @livewireScripts 
 
         <script type="text/javascript" src="{{ URL::asset('js/theme.js') }}"></script>
     </body>
@@ -78,6 +69,10 @@
             transition: .4s; 
             opacity: 1; 
             cursor: pointer; 
+        }
+
+        .form {
+            margin-top: 20px; 
         }
     </style>
 </html>

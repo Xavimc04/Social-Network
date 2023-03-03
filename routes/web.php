@@ -17,18 +17,11 @@ Route::group(['middleware' => 'auth'], function() {
         return $profile->get($identifier); 
     }); 
 
-    // @ Information
-    Route::get('/app/help', [MainController::class, 'get']);
-    Route::get('/app/contact-support', [MainController::class, 'get']);
-    Route::get('/app/about-us', [MainController::class, 'get']); 
-
     // @ Administrators
     Route::get('/admin/dashboard', [DashboardController::class, 'get']); 
 }); 
 
 // @ Auth
 Route::get('login', [AuthController::class, 'getLogin'])->name('login');
-Route::get('register', [AuthController::class, 'getRegister'])->name('register'); 
-Route::post('login', [AuthController::class, 'authLogin'])->name('auth.login'); 
-Route::post('register', [AuthController::class, 'authRegister'])->name('auth.register');
+Route::get('register', [AuthController::class, 'getRegister'])->name('register');  
 Route::get('logout', [AuthController::class, 'logout']);

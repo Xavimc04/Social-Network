@@ -5,7 +5,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\RelUserRole as UserRoles; 
 use App\Models\Role; 
-use App\Models\Category; 
+use App\Models\Category;  
+use App\Models\Post; 
+use App\Models\User; 
 
 class DashboardController extends Controller
 {
@@ -28,6 +30,13 @@ class DashboardController extends Controller
             return redirect('/'); 
         } 
 
-        return view('dashboard'); 
+        return view('dashboard', [
+            "categories" => Category::count(), 
+            "users" => User::count(), 
+            "posts" => Post::count(),
+            "reports" => 0, 
+            "advertisemens" => 0, 
+            "sessions" => 0,
+        ]); 
     }
 }
