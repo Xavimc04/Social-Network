@@ -7,6 +7,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SettingsController; 
 use App\Http\Controllers\DashboardController; 
 
+use App\Events\ConnectionHandler;  
+
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/', [MainController::class, 'get']);
 
@@ -20,6 +22,12 @@ Route::group(['middleware' => 'auth'], function() {
     // @ Administrators
     Route::get('/admin/dashboard', [DashboardController::class, 'get']); 
 }); 
+
+Route::get('/hola', function() {
+    event(new ConnectionHandler); 
+    return null; 
+});
+
 
 // @ Auth
 Route::get('login', [AuthController::class, 'getLogin'])->name('login');
