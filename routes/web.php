@@ -6,11 +6,16 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;  
 use App\Http\Controllers\SettingsController; 
 use App\Http\Controllers\DashboardController; 
+use App\Http\Controllers\ChatController; 
 
-use App\Events\ConnectionHandler;  
+use App\Events\ConnectionHandler; 
+use App\Events\WhisperUser; 
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/', [MainController::class, 'get']);
+
+    // @ Messages 
+    Route::get('/chats', [ChatController::class, 'render']);
 
     // @ Accounts
     Route::get('/account-settings', [SettingsController::class, 'get']);
@@ -23,11 +28,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/admin/dashboard', [DashboardController::class, 'get']); 
 }); 
 
-Route::get('/hola', function() {
-    event(new ConnectionHandler); 
+// @ Delete
+Route::get('/whisper', function() {
+    broadcast(new WhisperUser(3, 'holaaaa')); 
     return null; 
 });
-
 
 // @ Auth
 Route::get('login', [AuthController::class, 'getLogin'])->name('login');

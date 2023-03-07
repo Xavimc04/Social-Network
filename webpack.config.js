@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path'); 
 
 module.exports = {
     entry: './resources/js/app.js',
@@ -12,7 +12,7 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: ['babel-loader'],
-            },
+            }, 
         ],
-    },
+    }, 
 };

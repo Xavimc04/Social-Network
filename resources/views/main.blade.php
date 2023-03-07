@@ -24,8 +24,7 @@
         @livewireScripts 
     </body>
 
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>     
-    <script src="{{ URL::asset('js/app.js') }}"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>      
 
     <style> 
         .success {

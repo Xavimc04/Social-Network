@@ -9,6 +9,8 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth; 
 
+use App\Events\WhisperUser; 
+
 class Main extends Component
 {  
     use WithPagination;
@@ -75,6 +77,7 @@ class Main extends Component
                 $counter++; 
             } 
 
+            event(new WhisperUser($currentPost->user_id, Auth::user()->name . ' liked your post...'));
             array_push($decoded, Auth::user()->id); 
             $currentPost->likes = $decoded; 
             $currentPost->update(); 

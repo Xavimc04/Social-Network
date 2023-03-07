@@ -16,7 +16,7 @@ class ConnectionHandler implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        return new Channel('public.connection');
+        return new Channel('public.connection.new');
     }
 
     // @ Custom event name
