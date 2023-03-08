@@ -3,8 +3,8 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Chats\ChatMember; 
-use App\Models\Chats\ChatMessage;
+use App\Models\ChatMember; 
+use App\Models\ChatMessage;
 
 class Chat extends Model
 {
@@ -21,6 +21,6 @@ class Chat extends Model
     }
 
     public function messages() {
-        return $this->hasMany(ChatMessage::class); 
+        return $this->hasMany(ChatMessage::class)->orderBy('created_at', 'DESC'); 
     }
 }

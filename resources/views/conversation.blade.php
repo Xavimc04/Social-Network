@@ -7,13 +7,13 @@
         <link rel="stylesheet" href="{{ URL::asset('css/global.css') }}" />
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
-        <title>Network | Chats</title> 
+        <title>Network | Conversation</title> 
 
         @livewireStyles
     </head>
 
     <body>   
-        @livewire('account.chat')
+        @livewire('account.conversation')
 
         <x-bottombar />
 

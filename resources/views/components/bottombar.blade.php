@@ -6,6 +6,7 @@
         <div onclick="window.location.href = '/profile/{{ Auth::user()->id }}'" title="Profile" class="material-icons blog-handle-button">person</div>
         <div onclick="window.location.href = '/account-settings'" title="Settings" class="material-icons blog-handle-button">settings</div>
         <div onclick="window.location.href = '/chats'" title="Chat" class="material-icons blog-handle-button">chat</div>
+
         <div onclick="handleCreator()" title="Create new post" class="material-icons blog-handle-button">edit_document</div>
     </div>
 </div>

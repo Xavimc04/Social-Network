@@ -16,6 +16,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     // @ Messages 
     Route::get('/chats', [ChatController::class, 'render']);
+    Route::get('/chats/{id}', [ChatController::class, 'goChat']);
 
     // @ Accounts
     Route::get('/account-settings', [SettingsController::class, 'get']);
