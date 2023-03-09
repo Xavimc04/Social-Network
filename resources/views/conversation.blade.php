@@ -13,7 +13,9 @@
     </head>
 
     <body>   
-        @livewire('account.conversation')
+        @livewire('account.conversation', [
+            "conversation" => $conversation
+        ])
 
         <x-bottombar />
 
@@ -21,10 +23,4 @@
     </body>  
 
     <script src="{{ asset('js/app.js') }}"></script>
-
-    <script>
-        Echo.channel('notificate').listen('WhisperUser', (e) => {
-            console.log(e)
-        })
-    </script> 
 </html>

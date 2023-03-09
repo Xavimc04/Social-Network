@@ -65,6 +65,7 @@ class Chat extends Component
 
             $chats[$index] = $single; 
             $chats[$index]->members = $single->members;  
+            $chats[$index]->messages = $single->messages;
 
             if(count($single->members) == 2) {
                 foreach ($single->members as $member) {
