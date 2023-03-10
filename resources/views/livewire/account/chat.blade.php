@@ -9,6 +9,8 @@
     </div>
 
     <div class="filter_actions">
+        <button onclick="handleCreator()">New group</button>
+
         <select wire:model.lazy="perPage" class="perPage">
             <option value="5">5</option>
             <option value="10">10</option>
@@ -21,6 +23,30 @@
             <option value="old">Older</option>
             <option value="unreaded">Unreaded</option> 
         </select>
+
+        <select class="perPage">
+            <option>All</option>
+            <option>Privates</option>
+            <option>Groups</option> 
+        </select>
+    </div>
+
+    <div class="group_creation"> 
+        <div class="section">
+            <input type="text" wire:model="group_name" placeholder="Group name"> 
+            
+            <div>
+                <input type="file" style="display: none" id="image-selector" wire:model="group_icon" accept="image/png, image/gif, image/jpeg"/>
+                <label for="image-selector"><span class="material-icons">more_vert</span></label>
+            </div>
+
+            <button>Create</button>
+        </div>
+        
+        <div class="section">
+            <input type="text" placeholder="Member">
+            <button>Add member</button>    
+        </div>  
     </div>
 
     @if (count($profiles) > 0)
@@ -84,7 +110,56 @@
     @endif
 </div> 
 
+<script>
+    const handleCreator = () => { 
+        let state = document.querySelector('.group_creation').style.display 
+
+        if(state != 'flex') { 
+            document.querySelector('.group_creation').style.display = 'flex'; 
+        } else { 
+            document.querySelector('.group_creation').style.display = 'none'
+        }
+    }
+</script>
+
 <style> 
+    .group_creation {
+        width: 100%;  
+        display: none; 
+        flex-direction: column;   
+        margin-top: 15px;  
+    }
+
+    .group_creation .section {
+        width: 100%;   
+        margin: 15px 0px; 
+        display: flex; 
+        flex-direction: row;  
+        justify-content: space-between; 
+        align-items: center;  
+    }
+
+    button {
+        padding: 10px 15px; 
+        border: none; 
+        border-radius: 4px; 
+        font-size: 1.03rem;
+        background: var(--app-color); 
+    }
+
+    .group_creation .section input[type="text"] {
+        border: none; 
+        background: rgba(0, 0, 0, 0.068); 
+        padding: 10px 15px; 
+        width: 70%; 
+        color: var(--input-color);   
+        font-size: 1.03rem; 
+    }
+
+    .group_creation .section input[type="text"]:focus {
+        outline: none; 
+    }
+
     .filter_actions {
         display: flex; 
         flex-wrap: wrap; 

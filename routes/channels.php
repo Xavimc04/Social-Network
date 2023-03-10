@@ -17,6 +17,6 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 }, ['guards' => ['web', 'auth']]);  
 
-Broadcast::channel('chat', function ($user) {
+Broadcast::channel('chat.{id}', function ($user, $id) {
     return $user; 
 });  

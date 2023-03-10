@@ -15,13 +15,25 @@ class Chat extends Component
     use WithPagination;
 
     public $search = "", $perPage = 10, $orderBy = "new"; 
+    public $group_name = "", $group_icon, $group_members; 
 
     public function startChat($target_id) { 
         if(Auth::user()->id == $target_id) {
             toastr()->error("You can't start a conversation with yourself..."); 
             return; 
         }
-        
+
+        // @ Check this zone to can't create another Private chat while exists...
+        $where_i_pertain = ChatMember::find('user_id', Auth::user()->id);
+        $target_chats = ChatMember::find('user_id', $target_id); 
+
+        $common_chats = $where_i_pertain->intersect($target_chats); 
+
+        if($common_chats->isNotEmpty()) { 
+            dd($common_chats); 
+            return;
+        }
+
         $chat = SingleChat::create([]);
 
         ChatMember::create([

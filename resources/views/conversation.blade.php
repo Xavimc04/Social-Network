@@ -14,7 +14,7 @@
 
     <body>   
         @livewire('account.conversation', [
-            "conversation" => $conversation
+            "conversation_id" => $conversation->id
         ])
 
         <x-bottombar />

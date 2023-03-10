@@ -3,7 +3,7 @@
         @if ($conversation->icon != null)
             <img class="no-image" src="{{ url($conversation->icon) }}" alt="Image">
         @else
-            <div class="no-image" style="background: var(--app-color);">Hola</div>
+            <div class="no-image" style="background: var(--app-color);">{{ $conversation->name[0] }}</div>
         @endif
 
         <div>{{ $conversation->name }}</div>
@@ -12,7 +12,6 @@
     <div class="messages" onload="scrollToBottom()">
         @foreach ($conversation->messages as $message)
             <div class="single-message {{ $message->sender_id == Auth::user()->id ? 'self' : 'target' }}">
-                <div class="sender">{{ $message->sender_id }}</div>
                 <div class="content">{{ $message->message }}</div>
                 <div class="hour">{{ $message->created_at->diffForHumans() }}</div>
             </div>
@@ -20,7 +19,7 @@
     </div>
 
     <div class="input-handler">
-        <input type="text" wire:model.defer="input" placeholder="Type here..." />
+        <input type="text" wire:model.defer="input" wire:keydown.enter="sendMessage" placeholder="Type here..." />
         <div class="material-icons">add_reaction</div>
         <div class="material-icons">gif</div>
         <div class="material-icons">image</div>
@@ -31,18 +30,16 @@
 <script src="{{ asset('js/app.js') }}"></script>
 
 <script>
-    Echo.join('chat')
+    Echo.join('chat.{{ $conversation->id }}')
         .listen('ChatMessage', (event) => {
             const Schema = `
-                <div class="single-message target">
-                    <span>Falta por saber si esto es target o self</span>
-                    <div class="sender">${ event.message.sender_id }</div>
+                <div class="single-message target"> 
                     <div class="content">${ event.message.message }</div>
                     <div class="hour">Just now</div>
                 </div>
             `;
 
-            document.querySelector('.messages').insertAdjacentHTML("beforeend", Schema);
+            document.querySelector('.messages').insertAdjacentHTML("beforeend", Schema);  
         })
 </script>
 
@@ -85,6 +82,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        scroll-behavior: smooth;
     }
 
     .messages::-webkit-scrollbar {
@@ -146,8 +144,8 @@
 
     .target {
         align-self: flex-start;
-        background: rgb(109, 124, 212);
-        color: white;
+        background: var(--app-color);
+        color: black;
     }
 
     .sender {
